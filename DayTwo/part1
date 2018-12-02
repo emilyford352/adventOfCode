@@ -9,6 +9,9 @@ let fourCount = 0;
 const alphabet = Array(26).fill().map((_, i) => String.fromCharCode('a'.charCodeAt(0) + i));
 
 contents.forEach((id) => {
+	let two = false;
+	let three = false;
+	let four = false;
 	const idArray = id.split('');
 	alphabet.forEach((character, index) => {
 		//will keep track of how many of each letter of the alphabet
@@ -20,15 +23,23 @@ contents.forEach((id) => {
 		});
 
 		if (count === 2) {
-			twoCount ++;
+			two = true;
 		} else if (count === 3) {
-			threeCount ++;
+			three = true;
 		} else if (count === 4) {
-			fourCount ++;
-		} else if (count > 4) {
-			console.log('hey this isnt working');
+			four = true;
 		}
 	});
+
+	if (two) {
+		twoCount++;
+	}
+	if (three) {
+		threeCount++;
+	}
+	if (four) {
+		fourCount++;
+	}
 });
 
 console.log(twoCount * threeCount * fourCount);
