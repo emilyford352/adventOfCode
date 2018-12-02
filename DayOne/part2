@@ -1,0 +1,27 @@
+const fs = require('fs');
+//'use strict';
+
+const contents = fs.readFileSync('./input', 'utf8').toString().split("\n");
+
+let output = 0;
+const outputs = [];
+
+contents.forEach((element, index) => {
+  if (element.includes('-')) {
+          const subtractAmount = parseInt(element.split('-')[1]);
+          output = output - subtractAmount;
+          outputs.push(output);
+  } else if (element.includes('+')) {
+          const addAmount = parseInt(element.split('+')[1]);
+          output = output + addAmount;
+          outputs.push(output);
+  }
+});
+
+const checkedInputs = [];
+for (i = 0; i < outputs.length; i++) {
+  if (checkedInputs.includes(outputs[i])) {
+    console.log(checkedInputs[i]);
+  }
+  checkedInputs.push(outputs[i]);
+}

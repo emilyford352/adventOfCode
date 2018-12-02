@@ -1,0 +1,18 @@
+const fs = require('fs');
+
+const contents = fs.readFileSync('./input', 'utf8').toString().split("\n");
+
+//console.log(contents);
+
+let output = 0;
+
+contents.forEach((element) => {
+	if (element.includes('-')) {
+		const subtractAmount = parseInt(element.split('-')[1]);
+		output = output - subtractAmount;
+	} else if (element.includes('+')) {
+		const addAmount = parseInt(element.split('+')[1]);
+		output = output + addAmount;
+	} 
+	console.log(output);
+});
