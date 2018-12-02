@@ -1,0 +1,34 @@
+const fs = require('fs');
+
+const contents = fs.readFileSync('./input', 'utf8').toString().split("\n");
+
+let twoCount = 0;
+let threeCount = 0;
+let fourCount = 0;
+
+const alphabet = Array(26).fill().map((_, i) => String.fromCharCode('a'.charCodeAt(0) + i));
+
+contents.forEach((id) => {
+	const idArray = id.split('');
+	alphabet.forEach((character, index) => {
+		//will keep track of how many of each letter of the alphabet
+		let count = 0;
+		idArray.forEach((char) => {
+			if (char === character) {
+				count ++;
+			}
+		});
+
+		if (count === 2) {
+			twoCount ++;
+		} else if (count === 3) {
+			threeCount ++;
+		} else if (count === 4) {
+			fourCount ++;
+		} else if (count > 4) {
+			console.log('hey this isnt working');
+		}
+	});
+});
+
+console.log(twoCount * threeCount * fourCount);
